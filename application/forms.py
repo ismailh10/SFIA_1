@@ -77,13 +77,13 @@ class BookingForm(FlaskForm):
             Length(min=2, max=30)
         ]
     )
-    title = StringField('Title',
+    location = StringField('Location',
         validators = [
             DataRequired(),
             Length(min=2, max=100)
         ]
     )
-    content = StringField('Text',
+    booking_type = StringField('Booking Type',
         validators = [
             DataRequired(),
             Length(min=2, max=1000)

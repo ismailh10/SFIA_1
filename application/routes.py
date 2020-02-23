@@ -43,24 +43,22 @@ def about():
 	return render_template('about.html', title='About')
 
 
-@app.route('/booking', methods=['GET', 'POST'])
+@app.route('/booking/search', methods=['GET', 'POST'])
 def booking():
 	form = BookingForm()
 	if form.validate_on_submit():
-		BookingData = BookingForm(
-		booking_name = form.first_name.data,
-		booking_location = form.last_name.data,
-		booking_type = form.title.data,
-		content = form.content.data)
+		booking = BookingForm(
+		first_name = form.first_name.data,
+                last_name = form.last_name.data,
+                location = form.location.data,
+		booking_type = form.booking_type.data,
+		)
 
-		db.session.add(BookingForm)
+		db.session.add(booking)
 		db.session.commit()
 
-		return redirect(url_for('home'))
-
-	else:
-        	print(form.errors)
-	return render_template('booking.html', title='Booking', form=form)
+		return redirect(url_for('booking/available'))
+	return render_template('booking.html',form=form)
 
 
 

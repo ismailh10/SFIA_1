@@ -5,18 +5,42 @@
             {{ form.hidden_tag() }}
             {{ form.first_name.label }}
             {{ form.first_name }}
-            <br>
+            <div  class="error">
+            {% for errors in form.first_name.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+            </div>      
+      <br>
             {{ form.last_name.label }}
             {{ form.last_name }}
-            <br>
-            {{ form.title.label }}
-            {{ form.title }}
-            <br>
-            {{ form.content.label }}
-            {{ form.content }}
-            <br>
+            <div  class="error">
+            {% for errors in form.last_name.errors %} 
+            <p>{{ error }}</p>
+            {% endfor %}
+            </div>
+     <br>
+            {{ form.location.label }}
+            {{ form.location }}
+            <div  class="error">
+            {% for errors in form.location.errors %} 
+            <p>{{ error }}</p>
+            {% endfor %}
+            </div>
+    <br>
+            <div  class="error">
+            {% for errors in form.booking_type.errors %} 
+            <p>{{ error }}</p>
+            {% endfor %}
+            </div>
+           <div
+            {{ form.booking_type.label }}
+            {{ form.booking_type }}
+            </div>
+           
+        <br>
             {{ form.submit }}
         </form>
+
     </div>
 {% endblock %}
 

@@ -1,26 +1,21 @@
 {% extends "layout.html" %}
 {% block body_content %}
-    <p>Need an account? Sign up</p>
+    
     <div class='form'>
         <form method='POST' action=''>
+           <div class='form'>
             {{ form.hidden_tag() }}
-            <div class='form_group'>
+           <div <div class="form">
                 {{ form.email.label }}
-                {{ form.email }}
-                {% if form.email.errors %}
-                    <div class='error'>
-                        {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-            <br>
-            <!--Password and Check Password fields-->
-            <br>
-            <div class='form_group'>
-                {{ form.submit }}
+                {{ form.email }} <br>
+               <div <div class="form">
+                {{ form.password.label }}
+                {{ form.password }}
+               <div <div class="form"> <br>
+                {{ form.confirm_password.label }}
+                {{ form.confirm_password }} <br>          
+               <div <div class='form_group'>
+                {{ form.submit }} <br>
             </div>
         </form>
-    </div>
-{% endblock %}
+   {% endblock %}

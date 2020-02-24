@@ -39,7 +39,7 @@ class RegistrationForm(FlaskForm):
             EqualTo('password')
         ]
     )
-    submit = SubmitField('Sign Up')
+    submit = SubmitField('Register')
 
     def validate_email(self, email):
         user = Users.query.filter_by(email=email.data).first()

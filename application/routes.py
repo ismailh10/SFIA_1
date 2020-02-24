@@ -23,15 +23,15 @@ def logout():
 	logout_user()
 	return redirect(url_for('home'))
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['POST', 'GET'])
 def register():
-	register_form = RegistrationForm()
-	if register_form.validate_on_submit():
+	form = RegistrationForm()
+	if form.validate_on_submit():
 		new_user = Users(email=register_form.email.data, password=bcrypt.generate_password_hash(register_form.password.data))
 		db.session.add(new_user)
 		db.session.commit()
 		return redirect(url_for('login'))
-	return render_template('register.html', title='Register', form=register_form)
+	return render_template('register.html',form=form)
 
 @app.route('/')
 @app.route('/home')

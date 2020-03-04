@@ -5,40 +5,40 @@
             {{ form.hidden_tag() }}
             </div>
             <div class='form'>
-            {{ form.first_name.label }}
-            {{ form.first_name }}
+            {{ form.goalkeeper.label }}
+            {{ form.goalkeeper }}
             <div  class="error">
-            {% for errors in form.first_name.errors %}
-            <p>{{ error }}</p>
+            {% for errors in form.goalkeeper.errors %}
+            <span>{{ error }}</span>
             {% endfor %}
            </div> 
            </div>      
       <br> <div class='form'>
             {{ form.hidden_tag() }}
             <div class='form'>             
-            {{ form.last_name.label }}
-            {{ form.last_name }}
+            {{ form.defender.label }}
+            {{ form.defender }}
             <div  class="error">
-            {% for errors in form.last_name.errors %} 
-            <p>{{ error }}</p>
+            {% for errors in form.defender.errors %} 
+            <span>{{ error }}</span>
             {% endfor %}
             </div> </div>
      <br>   {{ form.hidden_tag() }}
             <div class='form'>
-            {{ form.location.label }}
-            {{ form.location }}
+            {{ form.midfielder.label }}
+            {{ form.midfielder }}
             <div  class="error">
-            {% for errors in form.location.errors %} 
-            <p>{{ error }}</p>
+            {% for errors in form.midfielder.errors %} 
+            <span>{{ error }}</span>
             {% endfor %}
             </div> </div>
     <br>    {{ form.hidden_tag() }}
             <div class='form'>
-            {{ form.booking_type.label }}
-            {{ form.booking_type }}
+            {{ form.forward.label }}
+            {{ form.forward }}
             <div  class="error">
-            {% for errors in form.booking_type.errors %} 
-            <p>{{ error }}</p>
+            {% for errors in form.forward.errors %} 
+            <span>{{ error }}</span>
             {% endfor %}
             </div>
            <div

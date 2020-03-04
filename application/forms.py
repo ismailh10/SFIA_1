@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-
-from wtforms import StringField, SubmitField, PasswordField, BooleanField
+from application.models import User
+from flask_login import current_user
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, SelectField
 
 class LoginForm(FlaskForm):
     email = StringField('Email',
@@ -28,6 +29,7 @@ class RegistrationForm(FlaskForm):
             Email()
         ]
     )
+
     password = PasswordField('Password',
         validators = [
             DataRequired(),
@@ -41,52 +43,45 @@ class RegistrationForm(FlaskForm):
     )
     submit = SubmitField('Register')
 
-    def validate_email(self, email):
-        user = Users.query.filter_by(email=email.data).first()
 
-        if user:
-            raise ValidationError('Email already in use')
+    def validate_email(self,email):
+
+        users=User.query.filter_by(email=email.data).first()
+
+        if users:
+          raise ValidationError("Email already in use")
 
 
+class GenerateForm(FlaskForm):
+
+	goalkeeper = StringField('Goalkeeper',
+		validators=[
+			DataRequired(),
+			Length(min=2, max=100)
+        	]
+    	)
 
 
-class BookingForm(FlaskForm):
+	defender = StringField('Defender',
+		validators = [
+			DataRequired(),
+			Length(min=2, max=30)
+		]
+	)
 
-    email = StringField('',
-        validators=[
-            DataRequired(),
-            Email()
-        ]
-    )
-    password = PasswordField('Password',
-        validators=[
-            DataRequired()
-        ]
-    )
-    remember = BooleanField('Remember Me')
 
-    first_name = StringField('First Name',
-        validators = [
-            DataRequired(),
-            Length(min=2, max=30)
-        ]
-    )
-    last_name = StringField('Last Name',
-        validators = [
-            DataRequired(),
-            Length(min=2, max=30)
-        ]
-    )
-    location = StringField('Location',
-        validators = [
-            DataRequired(),
-            Length(min=2, max=100)
-        ]
-    )
-    booking_type = StringField('Booking Type',
-        validators = [
-            DataRequired(),
-            Length(min=2, max=1000)
-        ]
-    )
-    submit = SubmitField('OK')
+	midfielder = StringField('Midfielder',
+		validators = [
+			DataRequired(),
+			Length(min=2, max=100)
+        	]
+	)
+
+
+	forward = StringField('Forward',
+		validators = [
+			DataRequired(),
+			Length(min=2, max=1000)
+		]
+	 )
+	submit = SubmitField('OK')

@@ -1,5 +1,4 @@
 from application import db
-
 from application import login_manager
 from flask_login import UserMixin
 
@@ -7,7 +6,7 @@ from flask_login import UserMixin
 def load_user(id):
 	return User.query.get(int(id))
 
-class User(db.Model):
+class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	email = db.Column(db.String(500), nullable=False, unique=True)
 	password = db.Column(db.String(500), nullable=False)

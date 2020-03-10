@@ -23,17 +23,19 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    login_form = LoginForm()
-    if login_form.validate_on_submit():
-        user = User.query.filter_by(email=login_form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, login_form.password.data):
-            login_user(user)
-            next_page = request.args.get('next')
-            if next_page:
-                return redirect(next_page)
-            else:
-                return redirect(url_for('generate'))
-    return render_template('home.html', form=login_form)
+	if current_user.is_authenticated:
+		return redirect(url_for('generate'))
+	form = LoginForm()
+	if form.validate_on_submit():
+		user = User.query.filter_by(email=form.email.data).first()
+		if user and bcrypt.check_password_hash(user.password, form.password.data):
+			login_user(user, remember=form.remember.data)
+			next_page = request.args.get('next')
+			if next_page:
+				return redirect(next_page)
+			else:
+				return redirect(url_for('generate'))
+	return render_template('login.html', form=form)
 
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
@@ -42,5 +44,6 @@ def generate():
 
 @app.route('/logout')
 def logout():
-        return render_template('logout.html', title='Logout')
+	logout_user()
+	return redirect (url_for('home'))
 

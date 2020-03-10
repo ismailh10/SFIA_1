@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from application.models import User
-from flask_login import current_user
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, SelectField
 
 class LoginForm(FlaskForm):
@@ -84,4 +83,4 @@ class GenerateForm(FlaskForm):
 			Length(min=2, max=1000)
 		]
 	 )
-	submit = SubmitField('OK')
+	submit = SubmitField('Generate')
